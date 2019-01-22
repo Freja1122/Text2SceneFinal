@@ -1,0 +1,119 @@
+{
+  "classifier_config": {
+    "initialize_method": "none",
+    "pruner_config": "none",
+    "type": "linear"
+  },
+  "data_config": {
+    "max_len": 100,
+    "batch_size": 8,
+    "clear_cache": "false",
+    "make_dataset": "true",
+    "sim_type": "true",
+    "test_num": 100,
+    "cv_ratio": 0.1,
+    "scene_load_type": "resnet"
+  },
+  "text_encoder_config": {
+    "n_output_history": 1,
+    "pooling_method": "none",
+    "rnn": "LSTM",
+    "rnn_config": {
+      "bi_proj_config": {
+        "initialize_method": "none",
+        "pruner_config": "none",
+        "type": "linear"
+      },
+      "bidirectional": "true",
+      "hidden_size": 256,
+      "num_layers": 1
+    },
+    "self_attention_config": "none"
+  },
+  "decoder_config": {
+    "pooling_method": "none",
+    "rnn": "LSTM",
+    "rnn_config": {
+      "hidden_size": 256,
+      "num_layers": 1
+    },
+    "sample_config": {},
+    "sample_type": "multinomial",
+    "spatial_attention_config":{
+      "num_layer": 2,
+      "layer1": {
+        "hidden_size": 256,
+        "kernel_size": 3
+      },
+      "layer2": {
+        "hidden_size": 1,
+        "kernel_size": 3
+      }
+    },
+    "attribute_decoder":{
+      "num_layer": 4,
+      "cell_type": "cnn",
+      "layer1": {
+        "hidden_size": 512,
+        "kernel_size": 3
+      },
+      "layer2": {
+        "hidden_size": 256,
+        "kernel_size": 3
+      },
+      "layer3": {
+        "hidden_size": 256,
+        "kernel_size": 3
+      },
+      "layer4": {
+        "hidden_size": 18,
+        "kernel_size": 3
+      }
+    },
+    "type_decoder":{
+      "num_layer": 2,
+      "cell_type": "linear",
+      "layer1": {
+        "hidden_size": 512
+      },
+      "layer2": {
+        "hidden_size": 62
+      }
+    }
+  },
+  "train_config": {
+    "loss": "basic",
+    "loss_config": {},
+    "clip_norm": 0.1,
+    "decoder": "rnn",
+    "embedding": "basic",
+    "encoder": "rnn",
+    "max_epoch": 50000,
+    "metric": "loss",
+    "n_epoch": 5000,
+    "optimizer": "nag",
+    "optimizer_config": {
+      "lr": 0.1,
+      "momentum": 0.99,
+      "weight_decay": 1e-7
+    },
+    "snapshot_ratio": 10
+  },
+  "spatial_attention_config": {
+    "num_layer": 2,
+    "layer1": {
+      "hidden_size": 256,
+      "kernel_size": 3
+    },
+    "layer2": {
+      "hidden_size": 1,
+      "kernel_size": 3
+    }
+  },
+  "scene_encoder_config": {
+    "num_layer": 1,
+    "input_size": 256,
+    "hidden_sizes": 512,
+    "kernel_size": 3
+  }
+}
