@@ -1,13 +1,11 @@
 import os
 import json
 import torch
-os.environ["PATH"] += os.pathsep + '/home/bixiao/anaconda3/bin'
-
 
 from constants import *
 from models.pipeline import Pipeline
 from util.toolkits import convert_kwargs
-from constants import MODEL_DIR, GLOBAL_STEP
+from constants import MODEL_DIR, GLOBAL_STEP, GPU_ID
 
 os.environ["CUDA_LAUNCH_BLOCKING"] = "1"
 os.environ["CUDA_VISIBLE_DEVICES"] = GPU_ID
@@ -29,7 +27,8 @@ class Run:
     def test(self, *dtypes):
         for dtype in dtypes:
             data_config = convert_kwargs(self._config.setdefault("data_config", {}))
-            data_config["training"] = dtype == "train" or dtype == "valid"
+            # data_config["training"] = dtype == "train" or dtype == "valid"
+            data_config["training"] = dtype == "train"
             # data_config["training"] = False
             if self._pipe is None:
                 self._pipe = Pipeline(self._config)
@@ -45,7 +44,8 @@ class Run:
         if self._pipe is None:
             self._pipe = Pipeline(self._config)
         # valid = dtype == "valid"
-        self._pipe.load(validating=True).visualize_attention(prefix='test')
+        # self._pipe.load(validating=dtype != 'test').visualize_attention(prefix=dtype)
+        self._pipe.load(validating=dtype=='train').visualize_attention(prefix=dtype)
 
 
 if __name__ == '__main__':

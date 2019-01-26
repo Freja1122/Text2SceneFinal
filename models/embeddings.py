@@ -15,7 +15,7 @@ class EmbeddingBase(torch.nn.Module):
             self.pick = torch.nn.Embedding(n, self.embedding_size).to(self._device)
             # self.pick.load_state_dict({'weight': glove_weight})
             self.pick.weight.data.copy_(torch.tensor(glove_weight))
-            self.pick.weight.requires_grad = True
+            self.pick.weight.requires_grad = False
         else:
             self.embedding_size = embedding_config.setdefault("embedding_size", 256)
             self.pick = torch.nn.Embedding(n, self.embedding_size).to(self._device)

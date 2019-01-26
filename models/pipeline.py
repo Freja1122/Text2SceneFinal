@@ -37,7 +37,11 @@ if root_path not in sys.path:
 font_path = "sources/AS/YaHei Mono.ttf"
 prop = mfm.FontProperties(fname=font_path, size=FONT_SIZE)
 mpl.rcParams["axes.unicode_minus"] = False
-
+print(os.environ["PATH"])
+# 宝贝我把/home/bixiao改成了/data1/bixiao，不知道会不会和这个有关系
+os.environ["PATH"] += os.pathsep + '/data1/bixiao/anaconda3/bin'
+sys.path.append("/data1/bixiao/anaconda3/bin")
+print(os.environ["PATH"])
 writer = SummaryWriter()
 
 torch.random.manual_seed(142857)
@@ -56,7 +60,6 @@ class Wrapper(torch.nn.Module):
         self._scene_enc_type = train_config.setdefault("scene_encoder", "convgru")
         self._dec_type = train_config.setdefault("decoder", "rnn")
         self._embedding_type = train_config.setdefault("embedding_type", "glove")
-        self.hot_type = train_config.setdefault("hot_type", "nhot")
         self.y_scale, self.x_scale = dataset.scene_shape[:2]
         print("wrapper: Building embedding")
         if self._embedding_type == 'glove':
@@ -88,7 +91,7 @@ class Wrapper(torch.nn.Module):
         print("wrapper: Building pos predictors")
         print()
 
-    def forward(self, batch):
+    def forward(self, batch, train_no_gt=False):
         if not self.summarize:
             text = batch["text"]
             objects = batch.get("objects", None)
@@ -107,6 +110,8 @@ class Wrapper(torch.nn.Module):
                 pose_target, expression_target = objects[object_info_dict["pose"]], objects[
                     object_info_dict["expression"]]
                 step_scene_tensor = objects[object_info_dict['step_scene_tensor']]
+                assert GRID_TYPE == 'gridx'
+                x_target, y_target, z_target, grid_target = pos.split(1, dim=-1)
 
         '''text embedding'''
         text_embedding = self.text_embedding(text)
@@ -125,7 +130,9 @@ class Wrapper(torch.nn.Module):
             text_embedding,
             text_enc_output,
             types,
-            text_pad_mask)
+            text_pad_mask,
+            grid_target=grid_target,
+            train_no_gt=train_no_gt)
         if not self.summarize:
             if pos is None:
                 x_target = y_target = z_target = grid_target = grid_x_target = grid_y_target = None
@@ -161,8 +168,9 @@ class Wrapper(torch.nn.Module):
                 result["type_logits"] = types
                 result["type_targets"] = types
                 result["type_samples"] = types
-            # return result
-            return result['grid']
+            return result
+            # return result['type_logits'], result['flip']
+
     def _extract_glove_weights(self):
         emb_dim = 300
         glove_path = '/data1/bixiao/Code/glove'
@@ -284,12 +292,23 @@ class Pipeline(torch.nn.Module):
         bar = ProgressBar(max_value=self._n_epoch, name="fit")
         n_iter = len(self._data_loader)
         snapshot_step = min(self._max_snapshot_step, int(n_iter * self._snapshot_ratio))
+        train_no_gt_shot = 5
+        train_no_gt_num = 1
+        train_no_gt_steps = []
         while i_epoch < n_epoch:
             i_epoch += 1
             sub_bar = ProgressBar(max_value=n_iter, name="iter")
             for batch in self._data_loader:
                 global_step += 1
-                loss, outputs = self._step(batch, is_training=True)
+                train_no_gt = False
+                # if global_step % train_no_gt_shot == 0:
+                #     train_no_gt_steps = range(global_step, global_step + train_no_gt_num)
+                #     train_no_gt_num += 1
+                # if global_step in train_no_gt_steps:
+                #     train_no_gt = True
+                # else:
+                #     train_no_gt = False
+                loss, outputs = self._step(batch, is_training=True, train_no_gt=train_no_gt)
                 self._losses["train"].append(loss)
                 del loss
                 if global_step % snapshot_step == 0:
@@ -354,11 +373,11 @@ class Pipeline(torch.nn.Module):
         bar.terminate()
         return self
 
-    def _step(self, batch, is_training=True):
+    def _step(self, batch, is_training=True, train_no_gt=False):
         if is_training:
             self.wrapper.train()
             self.optimizer.zero_grad()
-            outputs = self.wrapper(batch)
+            outputs = self.wrapper(batch, train_no_gt=train_no_gt)
         else:
             with torch.no_grad():
                 # self.wrapper.eval()# training=false
@@ -450,13 +469,15 @@ class Pipeline(torch.nn.Module):
                                      'md_' + MODEL_DIR + '_cp_' + str(global_step) + '_' + state)
         print('prediction dir: ' + export_folder)
         with self._dataset.test:
+            # with self._dataset.valid:
             test_num = self._dataset.n_test
             max_value = math.ceil(test_num / self._data_loader.batch_size)
             bar = ProgressBar(max_value=max_value, name="pred")
             for i, batch in enumerate(self._data_loader):
                 if i >= max_value:
                     break
-                self.export(-1, batch, export_folder=export_folder, name_prefix="batch_{}".format(i))
+                self.export(n=-1, batch=batch, export_folder=export_folder,
+                            name_prefix="{}_batch_{}".format(TEST_DEL_DUP, i))
                 bar.update()
         if self.real_metric is not None:
             print('real matric: [recall, real_recall, precision, real_precision, real_mis_rate, gt_real_rate]')
@@ -726,7 +747,7 @@ class Pipeline(torch.nn.Module):
                         self._visualize_attention(src, gen, gt_fetch, "{}_{}".format(prefix, name), local_fetch_heads,
                                                   figsize, prefix, file_name)
                         if head_num != 1:
-                            file_avg_name = '{}_{}_{}_avg.png'.format(visualize_batch_num, name)
+                            file_avg_name = '{}_{}_{}_avg.png'.format(visualize_batch_num, i, name)
                             self._visualize_attention(src, gen, gt_fetch, "{}_{}_avg".format(prefix, name),
                                                       [local_fetch_heads_avg / head_num],
                                                       figsize, prefix, file_avg_name)
@@ -824,9 +845,12 @@ if __name__ == '__main__':
     datasets = torch.load('pipdataset.pt')
     batch = torch.load('batch.pt')
     net = Wrapper(config, datasets, summarize=False)
+    net.eval()
     y = net(batch)
-    g = make_dot(y)
-    g.view()
+    g = make_dot(y[0])
+    # g = make_dot(y[1])
+    # g.view()
+    g.render('here_obj', view=False)
 
     params = list(net.parameters())
     k = 0
@@ -839,8 +863,6 @@ if __name__ == '__main__':
         k = k + l
     print("总参数数量和：" + str(k))
 
-
-
 # if __name__ == '__main__':
 #     config = ''
 #     data_name = DATA_NAME
@@ -849,28 +871,28 @@ if __name__ == '__main__':
 #
 #     with open(os.path.join("../configs", data_name, "{}.json".format(config_name))) as f:
 #         config = json.load(f)
-#     datasets = torch.load('pipdataset.pt')
-#     batch = torch.load('batch.pt')
-#     config["test"] = config["predict"] = False
-#     config["train"] = True
-#     wrapper = Wrapper(config, datasets, summarize=True)
-#     text = batch["text"]
-#     objects = batch["objects"]
-#     types = objects[object_info_dict['type']]
-#     step_scene_tensor = objects[object_info_dict['step_scene_tensor']]
-#     with SummaryWriter() as w:
-#         w.add_graph(wrapper, ([text, types, step_scene_tensor]))
+# datasets = torch.load('pipdataset.pt')
+# batch = torch.load('batch.pt')
+# config["test"] = config["predict"] = False
+# config["train"] = True
+# wrapper = Wrapper(config, datasets, summarize=True)
+# text = batch["text"]
+# objects = batch["objects"]
+# types = objects[object_info_dict['type']]
+# step_scene_tensor = objects[object_info_dict['step_scene_tensor']]
+# with SummaryWriter() as w:
+#     w.add_graph(wrapper, (text, types, step_scene_tensor))
 
-    # pip = Pipeline(config)
-    #
-    # with SummaryWriter() as w:
-    #     for batch in pip._data_loader:
-    #         torch.save(pip._dataset, 'pipdataset.pt')
-    #         torch.save(batch, 'batch.pt')
-    #         # dummy_input = batch.copy()
-    #         # dummy_input[object_info_dict['source']] = []
-    #         # dummy_input[object_info_dict['step_scene']] = []
-    #         # # print('text', dummy_input["text"])
-    #         # # print('objects', dummy_input.get("objects", None))
-    #         # w.add_graph(pip.wrapper, [dummy_input["text"], dummy_input["objects"]], )
-    #         break
+# pip = Pipeline(config)
+#
+# with SummaryWriter() as w:
+#     for batch in pip._data_loader:
+#         torch.save(pip._dataset, 'pipdataset.pt')
+#         torch.save(batch, 'batch.pt')
+#         # dummy_input = batch.copy()
+#         # dummy_input[object_info_dict['source']] = []
+#         # dummy_input[object_info_dict['step_scene']] = []
+#         # # print('text', dummy_input["text"])
+#         # # print('objects', dummy_input.get("objects", None))
+#         # w.add_graph(pip.wrapper, [dummy_input["text"], dummy_input["objects"]], )
+#         break

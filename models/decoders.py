@@ -128,7 +128,7 @@ class RNNDecoder(DecoderBase):
         self._scene_enc = scene_enc
         self.decoder_config = convert_kwargs(self._config.setdefault("decoder_config", {}))
         self.max_len = self.decoder_config.setdefault("max_len", 20)
-        self.hot_type = self.decoder_config.setdefault("hot_type", 'nhot')
+        self.hot_type = self.decoder_config.setdefault("hot_type", 'onehot')
         self.y_scale, self.x_scale = dataset.scene_shape[:2]
         text_input_size = text_enc_hidden_size + text_emb_size
         self.init_attention_config("spatial_attention_config",
@@ -188,14 +188,17 @@ class RNNDecoder(DecoderBase):
                 text_embedding,
                 text_enc_output,
                 target,
-                pad_mask):
+                pad_mask,
+                grid_target=None,
+                train_no_gt = False):
         self.obj_text_attention_weights = []
         self.att_text_attention_weights = []
         text_rep = torch.cat([text_enc_output, text_embedding], dim=-1)
-        if self.training:
-            return self.run_train_obj_att(pad_mask, scene_rep, target, text_rep)
+        if self.training and not train_no_gt:
+        # if True:
+            return self.run_train_obj_att(pad_mask, scene_rep, target, text_rep, grid_target)
         else:
-            return self.run_test_obj_att(pad_mask, scene_rep, text_rep)
+            return self.run_test_obj_att(pad_mask, target, text_rep)
 
     def run_test_obj_att(self, pad_mask, target, text_rep):
         time_step = 1
@@ -215,32 +218,25 @@ class RNNDecoder(DecoderBase):
                                                            self.type_num).unsqueeze(1)
                 if self.hot_type == 'nhot':
                     sample_n_hot_last = sample_n_hot_last.int()
-                    sample_n_hot_last |= last_n_hot_tensor
-                    last_n_hot_tensor = sample_n_hot_last
-                    sample_n_hot_last = sample_n_hot_last.float()
+                    last_n_hot_tensor |= sample_n_hot_last
+                    sample_n_hot_last = last_n_hot_tensor.float()
             obj_dec_output = self.obj_attention_decoder(pad_mask, scene_reps[-1], sample_n_hot_last, text_rep)
             sample = self.test_obj_sample(obj_dec_output)
-            # result_type = {
-            #     'type_logits': obj_dec_output,
-            #     'type_samples': sample
-            # }
-            # self.update_result(result, result_type)
-            if torch.all(sample == INIT_WORD_DICT[EOS]):
-                break
             sample_one_hot = self.get_batch_one_hot(sample, self.type_num)
             att_dec_output = self.att_attention_decoder(pad_mask, scene_reps[-1], sample_one_hot, text_rep)
             result_att = self.att_sample(att_dec_output)
             result_att['type_logits'] = obj_dec_output
             result_att['type_samples'] = sample
             scene_reps.append(self.get_scene_rep(result_att))
-            self.update_result(result, result_att)
+            result = self.update_result(result, result_att)
             self.obj_text_attention_weights = [torch.cat(self.obj_text_attention_weights, dim=1)]
             self.att_text_attention_weights = [torch.cat(self.att_text_attention_weights, dim=1)]
+            if torch.all(sample == INIT_WORD_DICT[PAD]):
+                break
         return result
 
-    def run_train_obj_att(self, pad_mask, scene_rep, target, text_rep):
+    def run_train_obj_att(self, pad_mask, scene_rep, target, text_rep, grid_target):
         target_one_hot = self.get_batch_one_hot(values=target, class_num=self.type_num)
-        print(target_one_hot)
         if self.hot_type == 'nhot':
             target_n_hot = self.get_n_hot_tensor(target_one_hot)
         elif self.hot_type == 'onehot':
@@ -251,10 +247,10 @@ class RNNDecoder(DecoderBase):
         取obj_dec_output的sample作为type的预测值
         '''
         obj_softmax = functional.softmax(obj_dec_output, dim=-1)
+
         samples = self.sample(obj_softmax)
-        print(target_one_hot)
         att_dec_output = self.att_attention_decoder(pad_mask, scene_rep, target_one_hot, text_rep)
-        result = self.att_sample(att_dec_output, target)
+        result = self.att_sample(att_dec_output, grid_target)
         result['type_samples'] = samples
         result['type_logits'] = obj_dec_output
 
@@ -266,6 +262,7 @@ class RNNDecoder(DecoderBase):
                 result[att] = torch.cat([result[att], result_att[att]], dim=DIM_CAT[att])
             else:
                 result[att] = result_att[att]
+        return result
 
     def get_scene_rep(self, result=None, last_canvas_list=None, b_s=None):
         if result == None:
@@ -288,7 +285,7 @@ class RNNDecoder(DecoderBase):
     def _extract_enc_feature(self, shape, sc_hidden_init):
         time_step = shape[1]
         spatial_size = list(shape[-2:])
-        sc_hidden_init = sc_hidden_init.unsqueeze(1).unsqueeze(-1).unsqueeze(-1)
+        sc_hidden_init = sc_hidden_init.unsqueeze(1).unsqueeze(-1).unsqueeze(-1)  # 增加最后一个维度和time step的维度
         sc_hidden_init = sc_hidden_init.repeat(1, time_step, 1, spatial_size[0], spatial_size[1])
         return sc_hidden_init
 
@@ -312,8 +309,8 @@ class RNNDecoder(DecoderBase):
         '''get the grid channel'''
         grid_logits = att_dec_output[..., :1, :, :]
         '''get pos of max value in grid channel'''
-        grid_logits = functional.softmax(grid_logits, dim=-1)
-        grid_logits_flat = grid_logits.view(-1, GRID_SIZE * GRID_SIZE)
+        grid_logits_softmax = functional.softmax(grid_logits, dim=-1)
+        grid_logits_flat = grid_logits_softmax.view(-1, GRID_SIZE * GRID_SIZE)
         if target is None:
             max_pos = torch.argmax(grid_logits_flat, dim=-1, keepdim=True)
         else:
@@ -330,7 +327,7 @@ class RNNDecoder(DecoderBase):
                 index += ATT_CHANNEL_DIC[att]
                 continue
             end_index = index + ATT_CHANNEL_DIC[att]
-            result[att] = functional.softmax(att_one_hot[..., index:end_index], dim=-1)
+            result[att] = att_one_hot[..., index:end_index]
             index = end_index
         grid_logit_shape = list(grid_logits.shape[:-3])
         assert GRID_TYPE == 'gridx'
@@ -415,10 +412,11 @@ class RNNDecoder(DecoderBase):
 
     def get_n_hot_tensor(self, one_hot_tensor):
         one_hot_copy = one_hot_tensor.int()
-        n_hot_tensor = torch.zeros(one_hot_copy.shape, dtype=torch.int)
+        n_hot_tensor = torch.zeros(one_hot_copy.shape, dtype=torch.int).to(self._device)
+        n_hot_tensor[..., 0, :] = one_hot_copy[..., 0, :]
         for i in range(1, one_hot_copy.shape[-2]):
-            n_hot_tensor[..., i, :] = one_hot_copy[..., i - 1, :] | one_hot_copy[..., i, :]
-        return n_hot_tensor.float().to(self._device)
+            n_hot_tensor[..., i, :] = n_hot_tensor[..., i - 1, :] | one_hot_copy[..., i, :]
+        return n_hot_tensor.float()
 
     def draw_gen_batch(self, outputs, batch=None, export_folder=None, name_prefix=None, n=None, last_canvas_list=None):
         if batch is not None:
@@ -460,9 +458,11 @@ class RNNDecoder(DecoderBase):
                     f.write(" ".join(self._dataset.recover_texts(texts)))
             else:
                 canvas_file = scene_name = data_file = None
-                # canvas_file = os.path.join("/data1/bixiao/Code/Text2SceneFinal/test_pic/sample_{}.png".format(i))
+                # canvas_file = os.path.join("/data1/bixiao/Code/Text2SceneFinal/test_pic/sample_{}_{}.png".format(i, 0))
             if last_canvas_list is not None and len(last_canvas_list) != 0:
                 last_canvas = last_canvas_list[i]
+                # canvas_file = os.path.join(
+                    # "/data1/bixiao/Code/Text2SceneFinal/test_pic/sample_{}_{}.png".format(i, len(last_canvas_list)))
             else:
                 last_canvas = None
             canvas = self._dataset.draw_from_grid(grids, zs, fs, ts, ps, es, save_file=canvas_file,

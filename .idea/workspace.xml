@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="445fd189-b459-49a7-bc1b-bb7b60531a7d" name="Default Changelist" comment="" />
+    <list default="true" id="445fd189-b459-49a7-bc1b-bb7b60531a7d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/decoders.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/decoders.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/embeddings.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/embeddings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.sh" beforeDir="false" afterPath="$PROJECT_DIR$/train.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/losses.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/losses.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,8 +23,8 @@
     <SUITE FILE_PATH="coverage/Text2SceneFinal$data.coverage" NAME="data Coverage Results" MODIFIED="1547886110661" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/util" />
     <SUITE FILE_PATH="coverage/Text2SceneFinal$decoders.coverage" NAME="decoders Coverage Results" MODIFIED="1547960305760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/Text2SceneFinal$grid.coverage" NAME="grid Coverage Results" MODIFIED="1548077392465" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/util" />
-    <SUITE FILE_PATH="coverage/Text2SceneFinal$main.coverage" NAME="main Coverage Results" MODIFIED="1548166315862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Text2SceneFinal$pipeline.coverage" NAME="pipeline Coverage Results" MODIFIED="1548156440529" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
+    <SUITE FILE_PATH="coverage/Text2SceneFinal$main.coverage" NAME="main Coverage Results" MODIFIED="1548435673361" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Text2SceneFinal$pipeline.coverage" NAME="pipeline Coverage Results" MODIFIED="1548301676792" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/Text2SceneFinal$convGRU.coverage" NAME="convGRU Coverage Results" MODIFIED="1547892788468" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
   </component>
   <component name="FileEditorManager">
@@ -21,8 +32,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/decoders.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2266">
-              <caret line="211" column="52" selection-start-line="211" selection-start-column="39" selection-end-line="211" selection-end-column="52" />
+            <state relative-caret-position="89">
+              <caret line="203" column="21" lean-forward="true" selection-start-line="203" selection-start-column="21" selection-end-line="203" selection-end-column="21" />
               <folding>
                 <element signature="e#555#1627#0" />
                 <element signature="e#602#856#0" />
@@ -41,27 +52,7 @@
                 <element signature="e#3274#3365#0" />
                 <element signature="e#3470#3773#0" />
                 <element signature="e#3861#4011#0" />
-                <element signature="e#7251#7456#0" />
-                <element signature="e#7631#7977#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/PIL/Image.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="43142">
-              <caret line="1966" selection-start-line="1966" selection-end-line="1966" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1367767556/tokenize.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9746">
-              <caret line="451" selection-start-line="451" selection-end-line="451" />
             </state>
           </provider>
         </entry>
@@ -69,23 +60,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/util/data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19580">
-              <caret line="912" column="6" selection-start-line="912" selection-start-column="6" selection-end-line="912" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/util/n2imap.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-              <folding>
-                <element signature="e#178#733#0" />
-                <element signature="e#311#380#0" />
-                <element signature="e#564#708#0" />
-                <element signature="e#767#821#0" />
-              </folding>
+            <state relative-caret-position="4884">
+              <caret line="244" column="43" selection-start-line="244" selection-start-column="43" selection-end-line="244" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -93,10 +69,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3608">
-              <caret line="164" column="31" selection-start-line="164" selection-start-column="31" selection-end-line="164" selection-end-column="31" />
+            <state relative-caret-position="269">
+              <caret line="308" column="11" lean-forward="true" selection-start-line="308" selection-start-column="11" selection-end-line="308" selection-end-column="11" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
+                <marker date="1548436609461" expanded="true" signature="41839:42472" ph="..." />
               </folding>
             </state>
           </provider>
@@ -105,8 +82,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/util/losses.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2816">
-              <caret line="128" column="29" selection-start-line="126" selection-start-column="27" selection-end-line="128" selection-end-column="29" />
+            <state relative-caret-position="120">
+              <caret line="102" column="12" selection-start-line="102" selection-start-column="12" selection-end-line="102" selection-end-column="12" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -115,22 +92,55 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/train.sh">
+        <entry file="file://$PROJECT_DIR$/models/attentions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+            <state relative-caret-position="2398">
+              <caret line="127" selection-start-line="127" selection-end-line="127" />
+              <folding>
+                <element signature="e#2125#2155#0" />
+                <element signature="e#3058#3114#0" />
+                <element signature="e#4127#4170#0" />
+                <element signature="e#4553#4685#0" />
+                <element signature="e#4729#4862#0" />
+                <element signature="e#4997#5016#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/convGRU.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="990">
+              <caret line="51" column="17" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/encoders.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1210">
+              <caret line="77" selection-start-line="77" selection-end-line="77" />
+              <folding>
+                <element signature="e#341#1086#0" />
+                <element signature="e#377#631#0" />
+                <element signature="e#683#687#0" />
+                <element signature="e#744#846#0" />
+                <element signature="e#901#1086#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.py">
+        <entry file="file://$PROJECT_DIR$/train.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="88">
+              <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -138,8 +148,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/constants.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="704">
-              <caret line="32" column="51" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
+            <state relative-caret-position="186">
+              <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="594">
+              <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -148,42 +170,45 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+      <find>pruner</find>
+      <find>pruner_config</find>
+      <find>MLP</find>
+      <find>attention_loss</find>
+      <find>grad</find>
+      <find>draw_ge</find>
+      <find>canvas_file =</find>
+      <find>getite</find>
+      <find>file_avg_name = '{}_{}_{}_avg.png'.format(visualize_batch_num, name)</find>
+      <find>draw_Fr</find>
+      <find>dropout</find>
       <find>def pre</find>
-      <find>output_size</find>
-      <find>for _ in range(num_layers)</find>
-      <find>SummaryWriter</find>
-      <find>from util.data import object_info_dict</find>
-      <find>w.add_graph(wrapper, [batch[&quot;text&quot;], batch[&quot;objects&quot;]], )</find>
-      <find>wri</find>
+      <find>def tes</find>
+      <find>de</find>
+      <find>load(</find>
+      <find>getitem</find>
+      <find>visua</find>
+      <find>validating</find>
+      <find>canvas_file</find>
+      <find>eval(</find>
+      <find>def load</find>
+      <find>eval</find>
+      <find>def loa</find>
+      <find>max_pos = target.view(-1, 1)</find>
+      <find>result = self.att_sample(att_dec_output, grid_target)</find>
       <find>batch_size</find>
-      <find>new_index = (ps[i] * expression_num + es[i]).item()</find>
-      <find>writer</find>
+      <find>-log_prob_flat.gather(dim=-1, index=target_flat)</find>
+      <find>loss = self.wt * self.type_loss(type_logits, type_targets, mask1)</find>
       <find>batch</find>
-      <find>print(OUTPUT</find>
-      <find>types_batch = self._dataset._tensor2list(outputs[&quot;type_samples&quot;])</find>
-      <find>data_file=data_file, last_canvas=last_canvas_list[i])</find>
-      <find>flip_batch = outputs[&quot;flip&quot;].argmax(-1).data</find>
-      <find>print(outputs[&quot;flip&quot;])</find>
-      <find>print(output</find>
-      <find>if len(last_canvas_list) != 0:</find>
-      <find>if zs[idx] == z_:</find>
-      <find>att_sam</find>
-      <find>/data1/bixiao/Code/Text2Sce</find>
-      <find>obj_sam</find>
-      <find>EOS</find>
-      <find>= self.sample(</find>
-      <find>batch_s</find>
-      <find>training</find>
-      <find>self._step(batch, is_training=True)</find>
-      <find>loss.backward()</find>
-      <find>hot_type</find>
-      <find>grad =</find>
+      <find>nhot</find>
     </findStrings>
     <replaceStrings>
       <replace />
       <replace>BACKGROUND_IDS</replace>
       <replace>is not None</replace>
     </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -200,28 +225,29 @@
         <option value="$PROJECT_DIR$/util/toolkits.py" />
         <option value="$PROJECT_DIR$/models/Resnet34.py" />
         <option value="$PROJECT_DIR$/models/conv2dsame.py" />
-        <option value="$PROJECT_DIR$/models/convGRU.py" />
         <option value="$PROJECT_DIR$/rmdir_becareful.sh" />
         <option value="$PROJECT_DIR$/models/encoders.py" />
         <option value="$PROJECT_DIR$/util/grid.py" />
         <option value="$PROJECT_DIR$/models/attentions.py" />
+        <option value="$PROJECT_DIR$/models/convGRU.py" />
+        <option value="$PROJECT_DIR$/models/embeddings.py" />
+        <option value="$PROJECT_DIR$/util/losses.py" />
         <option value="$PROJECT_DIR$/util/data.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/constants.py" />
+        <option value="$PROJECT_DIR$/models/pipeline.py" />
         <option value="$PROJECT_DIR$/configs/AS/basic.json" />
         <option value="$PROJECT_DIR$/models/decoders.py" />
-        <option value="$PROJECT_DIR$/util/losses.py" />
-        <option value="$PROJECT_DIR$/constants.py" />
         <option value="$PROJECT_DIR$/train.sh" />
-        <option value="$PROJECT_DIR$/models/embeddings.py" />
-        <option value="$PROJECT_DIR$/models/pipeline.py" />
-        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="22" />
     <option name="width" value="1440" />
     <option name="height" value="878" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -233,6 +259,17 @@
             <path>
               <item name="Text2SceneFinal" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="Text2SceneFinal" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="configs" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Text2SceneFinal" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="configs" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="AS" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
               <item name="Text2SceneFinal" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
@@ -275,7 +312,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.pipeline">
+  <component name="RunManager" selected="Python.main">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="Text2SceneFinal" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -390,9 +427,6 @@
       <module name="Text2SceneFinal" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="sftp://bixiao@localhost:32596/data1/bixiao/anaconda3/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
@@ -412,6 +446,9 @@
       <module name="Text2SceneFinal" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/models" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -461,12 +498,16 @@
       <workItem from="1548127182076" duration="26989000" />
       <workItem from="1548170098327" duration="305000" />
       <workItem from="1548170496176" duration="299000" />
-      <workItem from="1548170898582" duration="24000" />
+      <workItem from="1548170898582" duration="379000" />
+      <workItem from="1548171380893" duration="2336000" />
+      <workItem from="1548208585447" duration="30340000" />
+      <workItem from="1548339333938" duration="11507000" />
+      <workItem from="1548434266300" duration="2552000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135137000" />
+    <option name="totallyTimeSpent" value="182227000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -478,32 +519,33 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="878" extended-state="6" />
+    <frame x="0" y="22" width="1440" height="878" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20100144" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18955651" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4923664" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.37913486" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32951653" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="File Transfer" order="9" visible="true" weight="0.44529262" />
+      <window_info anchor="bottom" id="File Transfer" order="9" weight="0.25063613" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.4351145" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.15012723" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" weight="0.32951653" />
-      <window_info anchor="bottom" id="Python Console" order="14" weight="0.52926207" />
+      <window_info anchor="bottom" id="Python Console" order="14" visible="true" weight="0.42620865" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Remote Host" order="3" />
       <window_info anchor="right" id="SciView" order="4" />
-      <window_info active="true" anchor="right" x="0" y="0" width="430" height="858" id="Documentation" order="5" side_tool="true" visible="true" weight="0.32904148" />
+      <window_info anchor="right" x="0" y="0" width="430" height="858" id="Documentation" order="5" side_tool="true" visible="true" weight="0.14592275" />
       <window_info anchor="right" id="Database" order="6" />
     </layout>
   </component>
@@ -515,56 +557,81 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/util/data.py</url>
-          <line>972</line>
+          <line>975</line>
           <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/tensorboardX/pytorch_graph.py</url>
+          <line>221</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/torch/jit/__init__.py</url>
+          <line>250</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/models/decoders.py</url>
+          <line>219</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/models/decoders.py</url>
+          <line>238</line>
+          <option name="timeStamp" value="70" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="obj_dec_output" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
-        <expression-string>target_one_hot[0,-4,:]</expression-string>
+        <expression-string>text_rep[0][0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>target_one_hot[0,-1,:]</expression-string>
+        <expression-string>obj_dec_output</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>target_one_hot.shape</expression-string>
+        <expression-string>obj_dec_output[0][0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>obj_softmax[:,-1,:]</expression-string>
+        <expression-string>obj_dec_output[0].shape</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>grid_logits_flat[2]</expression-string>
+        <expression-string>target_hot[0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>grid_logits_flat[3]</expression-string>
+        <expression-string>target_n_hot[0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>grid_logits_flat</expression-string>
+        <expression-string>target_one_hot[0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>x_grid + 0.5</expression-string>
+        <expression-string>logits[0][0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>(x_grid + 0.5)</expression-string>
+        <expression-string>obj_softmax[0][0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
@@ -608,8 +675,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sources/AS/NounsMap.txt" />
-    <entry file="file://$PROJECT_DIR$/sources/AS/NounMI.txt" />
     <entry file="file://$PROJECT_DIR$/sources/AS/ClipArtIndices.png" />
     <entry file="file://$PROJECT_DIR$/configs/AS/basic1.json" />
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/torch/utils/data/dataset.py" />
@@ -620,7 +685,6 @@
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/torchvision/transforms/__init__.py" />
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/torchvision/transforms/functional.py" />
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/torch/nn/init.py" />
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/torch/cuda/__init__.py" />
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/pandas/core/generic.py" />
     <entry file="file://$PROJECT_DIR$/util/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -642,31 +706,6 @@
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/python_stubs/1910653402/posix.py" />
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/torch/nn/modules/rnn.py" />
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1367767556/json/decoder.py" />
-    <entry file="file://$PROJECT_DIR$/configs/AS/basic.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="14" column="31" lean-forward="true" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-          <folding>
-            <element signature="n#!!block;n#classifier_config#0;n#!!top" />
-            <element signature="n#!!block;n#decoder_config#0;n#!!top" />
-            <element signature="n#!!block;n#rnn_config#0;n#!!block;n#decoder_config#0;n#!!top" />
-            <element signature="n#!!block;n#spatial_attention_config#0;n#!!block;n#decoder_config#0;n#!!top" />
-            <element signature="n#!!block;n#layer1#0;n#!!block;n#spatial_attention_config#0;n#!!block;n#decoder_config#0;n#!!top" />
-            <element signature="n#!!block;n#layer2#0;n#!!block;n#spatial_attention_config#0;n#!!block;n#decoder_config#0;n#!!top" />
-            <element signature="n#!!block;n#layer1#0;n#!!block;n#attribute_decoder#0;n#!!block;n#decoder_config#0;n#!!top" />
-            <element signature="n#!!block;n#layer2#0;n#!!block;n#attribute_decoder#0;n#!!block;n#decoder_config#0;n#!!top" />
-            <element signature="n#!!block;n#layer3#0;n#!!block;n#attribute_decoder#0;n#!!block;n#decoder_config#0;n#!!top" />
-            <element signature="n#!!block;n#type_decoder#0;n#!!block;n#decoder_config#0;n#!!top" />
-            <element signature="n#!!block;n#layer1#0;n#!!block;n#type_decoder#0;n#!!block;n#decoder_config#0;n#!!top" />
-            <element signature="n#!!block;n#layer2#0;n#!!block;n#type_decoder#0;n#!!block;n#decoder_config#0;n#!!top" />
-            <element signature="n#!!block;n#optimizer_config#0;n#!!block;n#train_config#0;n#!!top" />
-            <element signature="n#!!block;n#spatial_attention_config#0;n#!!top" />
-            <element signature="n#!!block;n#layer1#0;n#!!block;n#spatial_attention_config#0;n#!!top" />
-            <element signature="n#!!block;n#layer2#0;n#!!block;n#spatial_attention_config#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/spatialnet.py" />
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/torch/nn/modules/pooling.py" />
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/torch/nn/modules/conv.py" />
@@ -727,53 +766,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/projections.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="109" column="4" selection-start-line="109" selection-start-column="4" selection-end-line="109" selection-end-column="4" />
-          <folding>
-            <element signature="e#186#746#0" />
-            <element signature="e#222#388#0" />
-            <element signature="e#426#430#0" />
-            <element signature="e#483#541#0" />
-            <element signature="e#589#746#0" />
-            <element signature="e#632#746#0" />
-            <element signature="e#790#1167#0" />
-            <element signature="e#848#956#0" />
-            <element signature="e#994#1167#0" />
-            <element signature="e#1204#1760#0" />
-            <element signature="e#1278#1695#0" />
-            <element signature="e#1733#1760#0" />
-            <element signature="e#1799#2024#0" />
-            <element signature="e#1831#2024#0" />
-            <element signature="e#2060#3747#0" />
-            <element signature="e#2134#3682#0" />
-            <element signature="e#2709#3281#0" />
-            <element signature="e#2906#2986#0" />
-            <element signature="e#3035#3116#0" />
-            <element signature="e#3166#3253#0" />
-            <element signature="e#3329#3471#0" />
-            <element signature="e#3720#3747#0" />
-            <element signature="e#4090#4127#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor />
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/toolkits.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -791,9 +788,173 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/conv2dsame.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/torch/nn/functional.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="2684" selection-start-line="2684" selection-end-line="2684" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/PIL/Image.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="43142">
+          <caret line="1966" selection-start-line="1966" selection-end-line="1966" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1367767556/tokenize.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9746">
+          <caret line="451" selection-start-line="451" selection-end-line="451" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/n2imap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+          <folding>
+            <element signature="e#178#733#0" />
+            <element signature="e#311#380#0" />
+            <element signature="e#564#708#0" />
+            <element signature="e#767#821#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1367767556/ntpath.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/tensorboardX/writer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="565" column="41" lean-forward="true" selection-start-line="565" selection-start-column="41" selection-end-line="565" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/torch/nn/modules/module.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="488" selection-start-line="488" selection-end-line="488" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/tensorboardX/pytorch_graph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="221" selection-start-line="221" selection-end-line="221" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/torch/jit/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="249" column="34" selection-start-line="249" selection-start-column="34" selection-end-line="249" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/embeddings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/torch/cuda/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="495" selection-start-line="495" selection-end-line="495" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/toolkits.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="38" column="12" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/projections.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+            <element signature="e#186#746#0" />
+            <element signature="e#222#388#0" />
+            <element signature="e#426#430#0" />
+            <element signature="e#483#541#0" />
+            <element signature="e#589#746#0" />
+            <element signature="e#632#746#0" />
+            <element signature="e#994#1167#0" />
+            <element signature="e#1733#1760#0" />
+            <element signature="e#1799#2024#0" />
+            <element signature="e#1831#2024#0" />
+            <element signature="e#2060#3747#0" />
+            <element signature="e#2134#3682#0" />
+            <element signature="e#2709#3281#0" />
+            <element signature="e#2906#2986#0" />
+            <element signature="e#3035#3116#0" />
+            <element signature="e#3166#3253#0" />
+            <element signature="e#3329#3471#0" />
+            <element signature="e#3720#3747#0" />
+            <element signature="e#4090#4127#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configs/AS/basic.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="814">
+          <caret line="41" column="31" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
+          <folding>
+            <element signature="n#!!block;n#classifier_config#0;n#!!top" />
+            <element signature="n#!!block;n#layer1#0;n#!!block;n#spatial_attention_config#0;n#!!block;n#decoder_config#0;n#!!top" />
+            <element signature="n#!!block;n#layer2#0;n#!!block;n#spatial_attention_config#0;n#!!block;n#decoder_config#0;n#!!top" />
+            <element signature="n#!!block;n#layer1#0;n#!!block;n#attribute_decoder#0;n#!!block;n#decoder_config#0;n#!!top" />
+            <element signature="n#!!block;n#layer2#0;n#!!block;n#attribute_decoder#0;n#!!block;n#decoder_config#0;n#!!top" />
+            <element signature="n#!!block;n#layer3#0;n#!!block;n#attribute_decoder#0;n#!!block;n#decoder_config#0;n#!!top" />
+            <element signature="n#!!block;n#layer1#0;n#!!block;n#type_decoder#0;n#!!block;n#decoder_config#0;n#!!top" />
+            <element signature="n#!!block;n#layer2#0;n#!!block;n#type_decoder#0;n#!!block;n#decoder_config#0;n#!!top" />
+            <element signature="n#!!block;n#optimizer_config#0;n#!!block;n#train_config#0;n#!!top" />
+            <element signature="n#!!block;n#spatial_attention_config#0;n#!!top" />
+            <element signature="n#!!block;n#layer1#0;n#!!block;n#spatial_attention_config#0;n#!!top" />
+            <element signature="n#!!block;n#layer2#0;n#!!block;n#spatial_attention_config#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4884">
+          <caret line="244" column="43" selection-start-line="244" selection-start-column="43" selection-end-line="244" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/attentions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
+        <state relative-caret-position="2398">
           <caret line="127" selection-start-line="127" selection-end-line="127" />
           <folding>
             <element signature="e#2125#2155#0" />
@@ -808,32 +969,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/convGRU.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        <state relative-caret-position="990">
+          <caret line="51" column="17" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="17" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/conv2dsame.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/embeddings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="14" column="83" lean-forward="true" selection-start-line="14" selection-start-column="83" selection-end-line="14" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/encoders.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
+        <state relative-caret-position="1210">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
           <folding>
             <element signature="e#341#1086#0" />
             <element signature="e#377#631#0" />
@@ -844,45 +991,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/torch/nn/modules/module.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="489" selection-start-line="489" selection-end-line="489" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/tensorboardX/pytorch_graph.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="168" column="4" selection-start-line="168" selection-start-column="4" selection-end-line="168" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/tensorboardX/writer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="110" column="47" selection-start-line="110" selection-start-column="42" selection-end-line="110" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/torch/nn/functional.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="2684" selection-start-line="2684" selection-end-line="2684" />
+        <state relative-caret-position="594">
+          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/decoders.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2266">
-          <caret line="211" column="52" selection-start-line="211" selection-start-column="39" selection-end-line="211" selection-end-column="52" />
+        <state relative-caret-position="89">
+          <caret line="203" column="21" lean-forward="true" selection-start-line="203" selection-start-column="21" selection-end-line="203" selection-end-column="21" />
           <folding>
             <element signature="e#555#1627#0" />
             <element signature="e#602#856#0" />
@@ -901,87 +1023,42 @@
             <element signature="e#3274#3365#0" />
             <element signature="e#3470#3773#0" />
             <element signature="e#3861#4011#0" />
-            <element signature="e#7251#7456#0" />
-            <element signature="e#7631#7977#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1296197152/PIL/Image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43142">
-          <caret line="1966" selection-start-line="1966" selection-end-line="1966" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/remote_sources/1910653402/-1367767556/tokenize.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9746">
-          <caret line="451" selection-start-line="451" selection-end-line="451" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19580">
-          <caret line="912" column="6" selection-start-line="912" selection-start-column="6" selection-end-line="912" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/n2imap.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-          <folding>
-            <element signature="e#178#733#0" />
-            <element signature="e#311#380#0" />
-            <element signature="e#564#708#0" />
-            <element signature="e#767#821#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3608">
-          <caret line="164" column="31" selection-start-line="164" selection-start-column="31" selection-end-line="164" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/util/losses.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2816">
-          <caret line="128" column="29" selection-start-line="126" selection-start-column="27" selection-end-line="128" selection-end-column="29" />
+        <state relative-caret-position="120">
+          <caret line="102" column="12" selection-start-line="102" selection-start-column="12" selection-end-line="102" selection-end-column="12" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train.sh">
+    <entry file="file://$PROJECT_DIR$/models/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+        <state relative-caret-position="269">
+          <caret line="308" column="11" lean-forward="true" selection-start-line="308" selection-start-column="11" selection-end-line="308" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1548436609461" expanded="true" signature="41839:42472" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/constants.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="32" column="51" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
+        <state relative-caret-position="186">
+          <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/train.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="88">
+          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
         </state>
       </provider>
     </entry>

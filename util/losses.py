@@ -68,7 +68,7 @@ class BasicLoss(LossBase):
         self.wa = self._config.setdefault("weight_attribute", 1)
         self.wh = self._config.setdefault("weight_human", 2)
         self.mask_type = self._config.setdefault("mask_type", "all")
-        self.attention_loss = True
+        self.attention_loss = False
         assert type_head_num == att_head_num
         self.head_num = type_head_num
         self.usegthuman = True

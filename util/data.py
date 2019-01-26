@@ -218,6 +218,7 @@ class Text2CVDataset(Dataset):
         self._scene_folder = os.path.join(tgt_data_folder, scene_folder)
         self._text_folder = os.path.join(tgt_data_folder, text_folder)
         self._object_folder = os.path.join(tgt_data_folder, object_folder)
+        print(tgt_data_folder)
         self._step_scene_folder = os.path.join(tgt_data_folder, step_scene_folder)
         self._step_scene_tensor_folder = os.path.join(tgt_data_folder, step_scene_tensor_folder)
         self._resnet_folder = os.path.join(tgt_data_folder, resnet_folder)
@@ -229,9 +230,10 @@ class Text2CVDataset(Dataset):
         return n_train
 
     def __getitem__(self, index):
-        if self.validating:
-            index = self._n_data - index % self.n_cv - self.n_test
-        elif self.testing:
+        # if self.validating:
+        #     index = self._n_data - index % self.n_cv - self.n_test
+        # elif self.testing:
+        if self.validating or self.testing:
             index = self._n_data - index % self.n_test - 1
         index = self._random_indices[index]
         if not self._initialized:
@@ -239,7 +241,8 @@ class Text2CVDataset(Dataset):
         '''text'''
         n_texts = self._texts_lengths[index]
         chosen_texts = self._texts[index][random.randint(0, n_texts - 1)]
-        if self.testing:
+        # if self.testing:
+        if self.validating or self.testing:
             chosen_texts = self._texts[index][0]
 
         '''scene and objects'''
@@ -978,7 +981,7 @@ class Text2CVDataset(Dataset):
             with open(data_file, 'w') as fw:
                 for t in org_type_list:
                     i = int(t[0])
-                    write_list = [str(pic_list[i]), str(t[1][1]), str(t[1][3:-1]),
+                    write_list = [str(pic_list[i]), str(ts[i]), str(t[1][1]), str(t[1][3:-1]),
                                   str(xs[i]), str(ys[i]), str(zs[i].item()), str(grids[i].item()), str(fs[i].item()),
                                   str(ps[i].item()),
                                   str(es[i].item())]
