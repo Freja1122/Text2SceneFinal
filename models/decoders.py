@@ -190,7 +190,7 @@ class RNNDecoder(DecoderBase):
                 target,
                 pad_mask,
                 grid_target=None,
-                train_no_gt = False):
+                train_no_gt=False):
         self.obj_text_attention_weights = []
         self.att_text_attention_weights = []
         text_rep = torch.cat([text_enc_output, text_embedding], dim=-1)
@@ -240,7 +240,7 @@ class RNNDecoder(DecoderBase):
         if self.hot_type == 'nhot':
             target_n_hot = self.get_n_hot_tensor(target_one_hot)
         elif self.hot_type == 'onehot':
-            target_n_hot = target_one_hot
+            target_n_hot = target_one_hot.clone()
         target_hot = self.get_minus_hot_tensor(target_n_hot)
         obj_dec_output = self.obj_attention_decoder(pad_mask, scene_rep, target_hot, text_rep)
         '''
@@ -411,7 +411,7 @@ class RNNDecoder(DecoderBase):
         return ohtensor.view(values_shape + [class_num])
 
     def get_n_hot_tensor(self, one_hot_tensor):
-        one_hot_copy = one_hot_tensor.int()
+        one_hot_copy = one_hot_tensor.int().clone()
         n_hot_tensor = torch.zeros(one_hot_copy.shape, dtype=torch.int).to(self._device)
         n_hot_tensor[..., 0, :] = one_hot_copy[..., 0, :]
         for i in range(1, one_hot_copy.shape[-2]):
@@ -462,7 +462,7 @@ class RNNDecoder(DecoderBase):
             if last_canvas_list is not None and len(last_canvas_list) != 0:
                 last_canvas = last_canvas_list[i]
                 # canvas_file = os.path.join(
-                    # "/data1/bixiao/Code/Text2SceneFinal/test_pic/sample_{}_{}.png".format(i, len(last_canvas_list)))
+                # "/data1/bixiao/Code/Text2SceneFinal/test_pic/sample_{}_{}.png".format(i, len(last_canvas_list)))
             else:
                 last_canvas = None
             canvas = self._dataset.draw_from_grid(grids, zs, fs, ts, ps, es, save_file=canvas_file,

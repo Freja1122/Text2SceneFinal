@@ -25,7 +25,7 @@ class MSE(LossBase):
 
 class CrossEntropy(LossBase):
     def forward(self, logits, target, mask=None, return_all=False):
-        logits_flat, target_flat = logits.view(-1, logits.shape[-1]), target.view(-1, 1)
+        logits_flat, target_flat = logits.contiguous().view(-1, logits.shape[-1]), target.contiguous().view(-1, 1)
         mask, log_prob_flat = mask.contiguous().view(-1, 1), functional.log_softmax(logits_flat, dim=-1)
         nll_losses_old = -log_prob_flat.gather(dim=-1, index=target_flat)
         temp = torch.sum(mask)
@@ -76,9 +76,13 @@ class BasicLoss(LossBase):
     def forward(self, batch, outputs, obj_attention_weights=None, att_attention_weights=None, return_all=False):
         mask = outputs["mask"]
         text_mask = outputs["text_mask"]
-        type_logits = outputs["type_logits"]
         type_targets = outputs["type_targets"]
         type_samples = outputs["type_samples"]
+        if type_samples.shape[1] != type_targets.shape[1]:
+            assert GRID_TYPE == 'gridx'
+            for key in ['type_logits', 'pose', 'expression', 'flip', 'grid', 'z', 'type_samples']:
+                outputs[key] = outputs[key][:,:type_targets.shape[1],...]
+        type_logits = outputs["type_logits"]
         if self.usegthuman == True:
             boy_mask = type_targets == 4
             girl_mask = type_targets == 5

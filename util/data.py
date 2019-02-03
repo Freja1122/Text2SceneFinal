@@ -464,6 +464,7 @@ class Text2CVDataset(Dataset):
             for i in range(name_max_idx, self.n_data):
                 objects = self._objects[i]
                 objects_num = len(objects[object_info_dict['source']])
+                resnet_features = []
                 scene_tensors = []
                 '''add backgrounud'''
                 img_tensor = self._get_tensor_from_ids(BACKGROUND_IDS).unsqueeze(0)
@@ -472,21 +473,27 @@ class Text2CVDataset(Dataset):
                 for idx in range(0, objects_num):
                     img_tensor = self._get_tensor_from_ids([i, idx]).unsqueeze(0)
                     scene_tensors.append(img_tensor)
+                    del img_tensor
                 scene_tensors = torch.cat(scene_tensors, dim=0)
-                resnet_feature = self._get_resnet_feature(scene_tensors)
-                torch.save(resnet_feature,
+                resnet_features = self._get_resnet_feature(scene_tensors)
+                torch.save(resnet_features,
                            os.path.join(self._resnet_folder, 'resnet_feature_{}.pt'.format(i)))
-                del scene_tensors
+                del resnet_features
                 bar.update()
             return
 
     def _get_resnet_feature(self, scene_tensors):
-        result_step = self.resnet_model(scene_tensors.to(self.device), layer_num=4)
-        batch_size_x, result_step = flat_bts(result_step)
-        result_step = torch.nn.functional.interpolate(result_step, scale_factor=(2, 2), mode='bilinear',
-                                                      align_corners=None)  # align_corners 应该是什么
-        result_step = unflat_bts(batch_size_x, result_step)
-        return result_step.data
+        scene_tensors = scene_tensors.to(self.device)
+        result_steps = []
+        for scene_tensor in scene_tensors:
+            result_step = self.resnet_model(scene_tensor.unsqueeze(0).to(self.device), layer_num=4)
+            result_steps.append(result_step)
+        result_steps = torch.cat(result_steps, dim=0)
+        batch_size_x, result_steps = flat_bts(result_steps)
+        result = torch.nn.functional.interpolate(result_steps, scale_factor=(2, 2), mode='bilinear',
+                                                     align_corners=None)  # align_corners 应该是什么
+        result = unflat_bts(batch_size_x, result)
+        return result.data
 
     def _update_info(self, attr, info):
         attr_complete = "{}_info".format(attr)
@@ -936,17 +943,16 @@ class Text2CVDataset(Dataset):
         t_no_dup = []
         for i, t in enumerate(ts):
             source_type = self.type_source_dict.get(self.idx_type_dict[t], "unknown")
+            if source_type == "unknown":
+                continue
+            if source_type is None:
+                break
             # 如果是人物，则绘制相应图像
             if t in HUMAN_PIC_IDX:
                 new_index = (ps[i] * expression_num + es[i]).item()
                 new_type = self.idx_type_dict[t].replace('0', str(new_index))
                 source_type = self.type_source_dict.get(new_type, "unknown")
             pic_list.append(source_type)
-            if source_type == "unknown":
-                continue
-            if source_type is None:
-                break
-
             if t not in t_no_dup:
                 t_no_dup.append(t)
             else:
@@ -957,6 +963,8 @@ class Text2CVDataset(Dataset):
         render_len = len(type_list)
         if last_canvas is not None:
             canvas = last_canvas
+        if len(pic_list) == 0:
+            return canvas
         # 先根据深度绘制天空中的物品
         for z_ in range(2, -1, -1):
             for [idx, _] in type_list:
@@ -969,11 +977,8 @@ class Text2CVDataset(Dataset):
         for z_ in range(2, -1, -1):
             for [idx, _] in type_list:
                 if pic_list[idx][0] != 's':
-                    try:
-                        if zs[idx] == z_:
-                            canvas = render_img(xs[idx], ys[idx], zs[idx], fs[idx], pic_list[idx], canvas)
-                    except:
-                        print('bad')
+                    if zs[idx] == z_:
+                        canvas = render_img(xs[idx], ys[idx], zs[idx], fs[idx], pic_list[idx], canvas)
 
         if save_file is not None:
             canvas.save(save_file)

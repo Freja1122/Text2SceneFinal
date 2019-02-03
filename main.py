@@ -27,8 +27,8 @@ class Run:
     def test(self, *dtypes):
         for dtype in dtypes:
             data_config = convert_kwargs(self._config.setdefault("data_config", {}))
-            # data_config["training"] = dtype == "train" or dtype == "valid"
             data_config["training"] = dtype == "train"
+            # data_config["training"] = dtype == "train" or dtype == "valid"
             # data_config["training"] = False
             if self._pipe is None:
                 self._pipe = Pipeline(self._config)

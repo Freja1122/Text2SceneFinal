@@ -14,11 +14,11 @@ DEBUG = False
 DPI = 120
 '''change'''
 VISUALIZE = False
-DTYPES = ["train"]
+# DTYPES = ["train"]
 # DTYPES = ["valid"]
-# DTYPES = ["test"]
-MODEL_DIR = "models20190124.172753"  # bibi
-GLOBAL_STEP = 76000  # when USEBESTSTEP is not True
+DTYPES = ["test"]
+MODEL_DIR = "models20190201.172117"  # bibi
+GLOBAL_STEP = 264000  # when USEBESTSTEP is not True, should be None
 USEBESTSTEP = False
 TRAIN_INFO = "att"
 GPU_ID = "4"

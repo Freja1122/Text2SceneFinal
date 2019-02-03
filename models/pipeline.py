@@ -92,6 +92,8 @@ class Wrapper(torch.nn.Module):
         print()
 
     def forward(self, batch, train_no_gt=False):
+        # if train_no_gt==True:
+        #     train_no_gt=True
         if not self.summarize:
             text = batch["text"]
             objects = batch.get("objects", None)
@@ -292,7 +294,7 @@ class Pipeline(torch.nn.Module):
         bar = ProgressBar(max_value=self._n_epoch, name="fit")
         n_iter = len(self._data_loader)
         snapshot_step = min(self._max_snapshot_step, int(n_iter * self._snapshot_ratio))
-        train_no_gt_shot = 5
+        train_no_gt_shot = 1005
         train_no_gt_num = 1
         train_no_gt_steps = []
         while i_epoch < n_epoch:
