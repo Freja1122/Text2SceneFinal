@@ -128,7 +128,7 @@ class RNNDecoder(DecoderBase):
         self._scene_enc = scene_enc
         self.decoder_config = convert_kwargs(self._config.setdefault("decoder_config", {}))
         self.max_len = self.decoder_config.setdefault("max_len", 20)
-        self.hot_type = self.decoder_config.setdefault("hot_type", 'onehot')
+        self.hot_type = self.decoder_config.setdefault("hot_type", 'nhot')
         self.y_scale, self.x_scale = dataset.scene_shape[:2]
         text_input_size = text_enc_hidden_size + text_emb_size
         self.init_attention_config("spatial_attention_config",
@@ -194,8 +194,8 @@ class RNNDecoder(DecoderBase):
         self.obj_text_attention_weights = []
         self.att_text_attention_weights = []
         text_rep = torch.cat([text_enc_output, text_embedding], dim=-1)
-        if self.training and not train_no_gt:
-        # if True:
+        # if self.training and not train_no_gt:
+        if True:
             return self.run_train_obj_att(pad_mask, scene_rep, target, text_rep, grid_target)
         else:
             return self.run_test_obj_att(pad_mask, target, text_rep)

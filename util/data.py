@@ -210,6 +210,7 @@ class Text2CVDataset(Dataset):
             self.resnet_model = resnet34(pretrained=True, num_classes=1000, zero_init_residual=False).cuda()
             for param in self.resnet_model.parameters():
                 param.requires_grad = False
+            self.resnet_model.eval()
         self._spend_time_gen = self.config.setdefault("spend_time_gen", True)
         self._is_generate_scene = self.config.setdefault("generate_step_scene", True)
 
@@ -484,14 +485,15 @@ class Text2CVDataset(Dataset):
 
     def _get_resnet_feature(self, scene_tensors):
         scene_tensors = scene_tensors.to(self.device)
-        result_steps = []
-        for scene_tensor in scene_tensors:
-            result_step = self.resnet_model(scene_tensor.unsqueeze(0).to(self.device), layer_num=4)
-            result_steps.append(result_step)
-        result_steps = torch.cat(result_steps, dim=0)
+        result_steps = self.resnet_model(scene_tensors, layer_num=4)
+        # result_steps = []
+        # for scene_tensor in scene_tensors:
+        #     result_step = self.resnet_model(scene_tensor.unsqueeze(0).to(self.device), layer_num=4)
+        #     result_steps.append(result_step)
+        # result_steps = torch.cat(result_steps, dim=0)
         batch_size_x, result_steps = flat_bts(result_steps)
         result = torch.nn.functional.interpolate(result_steps, scale_factor=(2, 2), mode='bilinear',
-                                                     align_corners=None)  # align_corners 应该是什么
+                                                 align_corners=None)  # align_corners 应该是什么
         result = unflat_bts(batch_size_x, result)
         return result.data
 
@@ -987,6 +989,13 @@ class Text2CVDataset(Dataset):
                 for t in org_type_list:
                     i = int(t[0])
                     write_list = [str(pic_list[i]), str(ts[i]), str(t[1][1]), str(t[1][3:-1]),
+                                  str(xs[i]), str(ys[i]), str(zs[i].item()), str(grids[i].item()), str(fs[i].item()),
+                                  str(ps[i].item()),
+                                  str(es[i].item())]
+                    fw.write('\t'.join(write_list) + '\n')
+            with open(data_file + '_org.txt', 'w') as fw:
+                for i in range(0, len(ts)):
+                    write_list = [str(self.type_source_dict.get(self.idx_type_dict[ts[i]], "unknown")), str(ts[i]),
                                   str(xs[i]), str(ys[i]), str(zs[i].item()), str(grids[i].item()), str(fs[i].item()),
                                   str(ps[i].item()),
                                   str(es[i].item())]

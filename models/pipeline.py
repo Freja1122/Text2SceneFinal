@@ -133,7 +133,8 @@ class Wrapper(torch.nn.Module):
             text_enc_output,
             types,
             text_pad_mask,
-            grid_target=grid_target,
+            # grid_target=grid_target,
+            grid_target=None,
             train_no_gt=train_no_gt)
         if not self.summarize:
             if pos is None:
@@ -644,8 +645,8 @@ class Pipeline(torch.nn.Module):
         for h, weight_org in enumerate(weights):
             sum_gen = np.sum(weight_org, axis=1)
             sum_src = np.sum(weight_org, axis=0)
-            weight = weight_org
-            # weight = weight_org / weight_org.max()
+            weight = weight_org.clone()
+            weight = weight_org / weight_org.max()
             # fig, ax = plt.subplots(figsize=figsize)
             temp_str = str(row) + str(col) + str(h + 1)
             ax = plt.subplot(int(temp_str))
